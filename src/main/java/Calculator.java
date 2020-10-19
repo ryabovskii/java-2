@@ -4,20 +4,20 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
+
 public class Calculator {
 
-    public static void main(String[] args) throws ParserCalculatorException {
+
+    public static void main(String[] args) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         ParserCalculator mParserCalculator = new ParserCalculator();
 
-        for(;;)
-        {
-            try
-            {
+        while (true) {
+            try {
                 System.out.print("Введите выражение для вычисления\n  ");
                 String str = reader.readLine();
-                if(str.equals(""))
+                if (str.equals(""))
                     break;
                 double result = mParserCalculator.evaluate(str);
 
@@ -27,8 +27,9 @@ public class Calculator {
 
                 System.out.printf("%s = %s%n", str, f.format(result));
 
+            } catch (ParserCalculatorException | IOException e) {
+                System.out.println(e);
             }
-            catch(ParserCalculatorException | IOException e) { System.out.println(e); }
         }
     }
 
